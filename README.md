@@ -6,7 +6,7 @@ Hola! This is my version of the Cloud Challenge in AWS. In this project, I am co
 
 ## Architecture
 
-![AWS Cloud Challenge drawio](![Updated Amazon AWS Diagram drawio](https://github.com/user-attachments/assets/bca28753-d495-4010-8b0e-672305871861)
+![AWS Cloud Challenge drawio](https://github.com/user-attachments/assets/bca28753-d495-4010-8b0e-672305871861)
 
 **Services Used**:
 
