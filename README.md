@@ -23,3 +23,4 @@ Hola! This is my version of the Cloud Challenge in AWS. In this project, I am co
 ## Author
 - Hashnode Blog: [@mrcyberleon](https://hashnode.com/@mrcyberleon)
 - LinkedIn: [Jonathan DeLeon](www.linkedin.com/in/jonathan-deleon-ccsp-81302a62)
+- TryHackMe: [MrGuato](https://tryhackme.com/p/MrGuato)
