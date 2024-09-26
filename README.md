@@ -6,7 +6,7 @@ Hola! This is my version of the Cloud Challenge in AWS. In this project, I am co
 
 ## Architecture
 
-![AWS Cloud Challenge drawio](https://github.com/user-attachments/assets/1b520abc-2dc5-469d-b0af-449e1e86956c)
+![AWS Cloud Challenge drawio](![Updated Amazon AWS Diagram drawio](https://github.com/user-attachments/assets/bca28753-d495-4010-8b0e-672305871861)
 
 **Services Used**:
 
@@ -18,7 +18,7 @@ Hola! This is my version of the Cloud Challenge in AWS. In this project, I am co
 - GitHub Actions
 - Terraform
 
-## [Live Demo 🔗](https://dqj7eu0b9k6fm.cloudfront.net/)
+## [Live Demo 🔗](https://cloud.mrcyberleon.org)
 
 ## Author
 - Hashnode Blog: [@mrcyberleon](https://hashnode.com/@mrcyberleon)
