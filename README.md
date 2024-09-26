@@ -1,6 +1,6 @@
 # AWS Cloud Challenge
 
-[![[Upload Website](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/front-end-cicd.yaml/badge.svg)](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/front-end-cicd.yaml)
+[![Upload Website](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/front-end-cicd.yaml/badge.svg)](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/front-end-cicd.yaml)
 
 Hello! This is my version of the Cloud Challenge in AWS. In this project, I am combining multiple Amazon services from [The Cloud Resume Challenge](https://cloudresumechallenge.dev/). By attempting and completing this project, I am demonstrating skills relevant to pursuing a career in the cloud. The project was originally published by Forrest Brazeal.
 
