@@ -53,7 +53,7 @@ This project, while seemingly simple, provides valuable experience and demonstra
 
 *   **DevOps Understanding:**  This project provides practical experience with DevOps tools and processes, which is essential for a security engineer working in a DevSecOps environment.  Understanding the development and deployment lifecycle is crucial for integrating security effectively.
 
-By completing this project, and with the added integrations of CodeQL, Snyk, and Uptime Robot, a security engineer can demonstrate a practical understanding of cloud security principles, DevSecOps practices, and the tools and technologies used to build and deploy secure and reliable applications in the AWS cloud. It serves as a strong foundation for further learning and specialization in cloud security. I mainly did this project to demonstrate competency using AWS Cloud, as I had never used it before, having focused primarily on Azure Cloud (Sorry, I am an Azure Fan :D )
+By completing this project, and with the added integrations of CodeQL, Snyk, and Uptime Robot, a security engineer can demonstrate a practical understanding of cloud security principles, DevSecOps practices, and the tools and technologies used to build and deploy secure and reliable applications in the AWS cloud. It serves as a strong foundation for further learning and specialization in cloud security. I primarily undertook this project to demonstrate competency with AWS Cloud, as I had no prior experience with it, having focused primarily on Azure Cloud.  While my background is primarily in Azure, this project provided valuable experience with the AWS ecosystem.
 
 **Future Development Considerations:**
 
