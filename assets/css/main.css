@@ -225,9 +225,9 @@ input, select, textarea {
 		-ms-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
 		background: #000000 url("images/bg.jpg") bottom left;
-        background-size: cover;
-        height: 100vh;
-        width: 100vw;
+        	background-size: cover;
+        	height: 100vh;
+        	width: 100vw;
 	}
 
 	@-moz-keyframes bg {
