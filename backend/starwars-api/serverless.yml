@@ -1,0 +1,15 @@
+service: starwars-api
+
+providers:
+  name: aws
+  runtime: nodejs22.14.0
+  region: us-east-1
+
+functions:
+  starwarsfact:
+  handler: handler.starwarsfact
+  events:
+    - htttp:
+      path: starwarsfact
+      method: get
+      cors: true
