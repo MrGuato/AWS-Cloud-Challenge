@@ -13,8 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: S3 Sync
-        uses: jakejarvis/s3-sync-action@v0.5.1
+      - uses: actions/checkout@v4  # Use a pinned version of checkout
+      - uses: jakejarvis/s3-sync-action@be0c4ab89158cac4278689ebedd8407dd5f35a83
         with:
           args: --acl private --follow-symlinks --delete
         env:
