@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: S3 Sync
-        uses: jakejarvis/s3-sync-action@v0.5.1
+        uses: MrGuato/s3-sync-action@master
         with:
           args: --acl private --follow-symlinks --delete
         env:
