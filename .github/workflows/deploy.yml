@@ -12,7 +12,7 @@ on:
 
 defaults:
   run:
-    working-directory: backend
+    working-directory: backend/starwars-api
 
 jobs:
   deploy:
