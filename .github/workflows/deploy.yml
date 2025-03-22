@@ -28,6 +28,7 @@ jobs:
 
     - name: Deploy with Serverless
       run: serverless deploy
+      working-directory: backend/starwars-api
       env:
         AWS_ACCESS_KEY_ID_SW: ${{ secrets.AWS_ACCESS_KEY_ID_SW }}
         AWS_SECRET_ACCESS_KEY_SW: ${{ secrets.AWS_SECRET_ACCESS_KEY_SW }}
