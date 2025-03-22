@@ -1,6 +1,6 @@
 service: starwars-api
 
-frameworkVersion: '3'  # or remove if not set
+frameworkVersion: '4'
 
 provider:
   name: aws
