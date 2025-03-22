@@ -1,5 +1,8 @@
 name: Deploy Star Wars API to AWS
 
+permissions:
+  contents: read
+
 on:
   push:
     paths:
@@ -32,6 +35,6 @@ jobs:
 
       - name: Deploy to AWS
         env:
-          AWS_ACCESS_KEY_ID_SW: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY_SW: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: serverless deploy
