@@ -1,0 +1,36 @@
+name: Deploy Star Wars API to AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '22.x'
+
+    - name: Install Dependencies
+      run: npm install
+      working-directory: backend/starwars-api
+
+    - name: Install Serverless
+      run: npm install -g serverless
+      working-directory: backend/starwars-api
+
+    - name: Deploy with Serverless
+      working-directory: backend/starwars-api
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      run: serverless deploy
