@@ -1,15 +1,17 @@
 service: starwars-api
 
-providers:
+frameworkVersion: '3'
+
+provider:
   name: aws
-  runtime: nodejs22.14.0
+  runtime: nodejs18.x
   region: us-east-1
 
 functions:
   starwarsfact:
-  handler: handler.starwarsfact
-  events:
-    - htttp:
-      path: starwarsfact
-      method: get
-      cors: true
+    handler: handler.starwarsfact
+    events:
+      - http:
+          path: starwarsfact
+          method: get
+          cors: true
