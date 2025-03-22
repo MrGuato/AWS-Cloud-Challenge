@@ -6,7 +6,7 @@ permissions:
 on:
   push:
     paths:
-      - 'backend/**'
+      - 'backend/starwars-api/**'
     branches:
       - main
 
