@@ -1,11 +1,14 @@
 service: starwars-api
 
-frameworkVersion: '4'
+frameworkVersion: '3'  # or remove if not set
 
 provider:
   name: aws
   runtime: nodejs22.x
   region: us-east-1
+
+  deploymentBucket:
+    name: ${env:AWS_S3_BUCKET}
 
 functions:
   starwarsfact:
