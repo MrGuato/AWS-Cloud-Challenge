@@ -20,9 +20,11 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
+      working-directory: ./AWS-Cloud-Challenge/backend/starwars-api
 
     - name: Install Serverless
       run: npm install -g serverless
+      working-directory: ./AWS-Cloud-Challenge/backend/starwars-api
 
     - name: Deploy with Serverless
       run: serverless deploy
