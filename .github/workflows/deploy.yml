@@ -20,6 +20,7 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
+      working-directory: backend/starwars-api
 
     - name: Install Serverless
       run: npm install -g serverless
