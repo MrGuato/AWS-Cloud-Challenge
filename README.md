@@ -4,6 +4,7 @@
 [![Upload Website](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/front-end-cicd.yaml/badge.svg)](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/front-end-cicd.yaml)
 [![Website Status](https://img.shields.io/uptimerobot/status/m798619615-533a3f0c1a578cd8e72699f7)](https://stats.uptimerobot.com/tybY8h8NyK)
 [![CodeQL](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/github-code-scanning/codeql)
+[![Deploy Star Wars API to AWS](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/deploy.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/MrGuato/File-Hash-Generator/badge.svg)](https://app.snyk.io/org/mrguato/AWS-Cloud-Challenge)
 [![Language](https://img.shields.io/github/languages/top/MrGuato/AWS-Cloud-Challenge?style=flat)](https://github.com/MrGuato/AWS-Cloud-Challenge)
 [![GitHub stars](https://img.shields.io/github/stars/MrGuato/AWS-Cloud-Challenge?style=social)](https://github.com/MrGuato/AWS-Cloud-Challenge)
