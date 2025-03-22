@@ -1,7 +1,12 @@
 module.exports = [
-  "The Death Star's firewall was almost protected by a primitive AI, but they opted for a more traditional defense system.",
-  "The encryption used for Rebel communications is a complex algorithm combining multiple cryptographic techniques.",
-  "A rogue IoT device briefly appeared in the Galactic Senate's network during a crucial vote.",
-  "The Empire's main cybersecurity system had only 12 minutes of downtime during the entire Galactic Civil War.",
-  "Mace Windu insisted on a unique multi-factor authentication method for his personal data — and it was implemented."
+  "Just like the Death Star's exhaust port flaw, 90% of data breaches exploit known vulnerabilities — patching is your Jedi duty!",
+  "Phishing attacks lure victims like the Dark Side — beware emails offering ‘free lightsabers.’",
+  "Two-factor authentication is like a lightsaber duel: you need both skill AND the Force to keep hackers out.",
+  "A ransomware attack is like Han Solo encased in carbonite — it freezes your data until a bounty is paid.",
+  "Cybersecurity firewalls are your Millenium Falcon’s shields — they defend against incoming threats!",
+  "A weak password is like a stormtrooper's aim — easily exploited by the enemy.",
+  "Data backups are the R2-D2 of cybersecurity — they save you when all seems lost.",
+  "Using public Wi-Fi without a VPN is like walking into Mos Eisley unarmed — a dangerous gamble.",
+  "Social engineering tricks you like a Jedi mind trick — always question what doesn’t feel right.",
+  "Encrypted data is your rebel fleet in hyperspace — safe from the Empire’s prying eyes!"
 ];
