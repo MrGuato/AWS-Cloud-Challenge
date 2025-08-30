@@ -6,6 +6,7 @@
 [![CodeQL](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/github-code-scanning/codeql)
 [![Deploy Star Wars API to AWS](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/deploy.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/MrGuato/File-Hash-Generator/badge.svg)](https://app.snyk.io/org/mrguato/AWS-Cloud-Challenge)
+[![Dependabot Updates](https://github.com/MrGuato/AWS-Cloud-Challenge/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/MrGuato/AWS-Cloud-Challenge/network/updates)
 [![Language](https://img.shields.io/github/languages/top/MrGuato/AWS-Cloud-Challenge?style=flat)](https://github.com/MrGuato/AWS-Cloud-Challenge)
 [![GitHub stars](https://img.shields.io/github/stars/MrGuato/AWS-Cloud-Challenge?style=social)](https://github.com/MrGuato/AWS-Cloud-Challenge)
 [![Last Commit](https://img.shields.io/github/last-commit/MrGuato/AWS-Cloud-Challenge)](https://github.com/MrGuato/AWS-Cloud-Challenge) 
