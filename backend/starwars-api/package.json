@@ -1,15 +1,30 @@
 {
   "name": "starwars-api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "2.0.0",
+  "private": true,
+  "description": "Cyber x Star Wars intel API for cloud.mrcyberleon.org (AWS Lambda + API Gateway, deployed with the Serverless Framework)",
+  "main": "handler.js",
+  "engines": {
+    "node": ">=22"
   },
-  "keywords": [],
-  "author": "",
+  "scripts": {
+    "test": "node --test",
+    "deploy": "serverless deploy --stage dev",
+    "info": "serverless info --stage dev",
+    "logs": "serverless logs --function starwarsfact --stage dev --tail",
+    "repair-stack": "bash scripts/repair-stack.sh"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "api-gateway",
+    "serverless",
+    "star-wars",
+    "cybersecurity"
+  ],
+  "author": "Jonathan DeLeon",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
+  "devDependencies": {
     "serverless": "^4.9.0"
   }
 }

@@ -1,46 +1,204 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Jonathan's Cloud Site</title>
-    <meta charset="utf-8" />
-    <meta name="Jonathans Cloud Site" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="css/images/personal_fav.png">
-    <noscript><link rel="stylesheet" href="css/noscript.css" /></noscript>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Jonathan DeLeon · security engineer</title>
+<meta name="description" content="Jonathan DeLeon, CCSP. Security engineer. My AWS Cloud Resume Challenge, built the way I would build it at work: S3, CloudFront, Lambda, API Gateway, DynamoDB, Terraform and GitHub Actions.">
+<meta property="og:title" content="Jonathan DeLeon · security engineer">
+<meta property="og:description" content="Secure by default, from the bucket policy to the CORS header. A security-first AWS Cloud Resume Challenge.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cloud.mrcyberleon.org/">
+<meta property="og:image" content="https://cloud.mrcyberleon.org/img/avatar-512.png">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/avatar-180.png">
+<link rel="stylesheet" href="css/site.css">
 </head>
-<body class="is-preload">
-    <div id="wrapper">
-        <div id="bg"></div>
-        <div id="overlay"></div>
-        <div id="main">
-            <header id="header">
-                <h1>Jonathan DeLeon, CCSP®</h1>
-                <p>Security Engineer • Defender of Companies • Works for the Empire</p>
-                <p>Welcome to my cloud challenge site! This site was made based on my GitHub AWS Cloud Resume Challenge. Social links below to my other sites. Thank you!</p>
-                <div class="visitor-counter">
-                    <p>Website <span id="counter-number">
-                <nav>
-                    <li><a href="https://linkedin.com/in/jonathan-deleon-ccsp-81302a62" class="icon brands fa-linkedin" title="LinkedIn"><span class="label">LinkedIn</span></a></li>
-                    <li><a href="https://www.credly.com/users/jonathan-deleon.bfdd720a" class="icon solid fa-scroll" title="Credly"><span class="label">Credly</span></a></li>
-                    <li><a href="https://tryhackme.com/p/MrGuato" class="icon solid fa-user-secret" title="TryHackMe"><span class="label">TryHackMe</span></a></li>
-                    <li><a href="https://github.com/MrGuato" class="icon brands fa-github" title="GitHub"><span class="label">GitHub</span></a></li>
-                    <li><a href="https://hashnode.com/@mrcyberleon" class="icon solid fa-pencil-alt" title="Hashnode"><span class="label">Hashnode</span></a></li>                                                                  
-                </nav>
-                <h2>Need a Cyber x Star Wars fact?</h2>
-                <button onclick="getStarWarsFact()">YES, Do it!</button>
-                <p id="starwars-fact"></p>
-            </header>
-            <footer id="footer">
-                <span class="copyright">©AWS Cloud Challenge</span>
-            </footer>
-        </div>
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <a class="brand" href="#top"><img src="img/favicon-64.png" width="24" height="24" alt="">Jonathan DeLeon</a>
+    <nav aria-label="Sections">
+      <a href="#project">Project</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#security">Security</a>
+      <a href="#intel">Intel</a>
+      <a href="#about">About</a>
+      <a href="#links">Links</a>
+    </nav>
+    <div class="seg" id="themeSeg" role="group" aria-label="Theme">
+      <button type="button" data-t="auto">Auto</button>
+      <button type="button" data-t="light">Light</button>
+      <button type="button" data-t="dark">Dark</button>
     </div>
-    <script>
-        window.onload = function() { document.body.classList.remove('is-preload'); }
-        window.ontouchmove = function() { return false; }
-        window.onorientationchange = function() { document.body.scrollTop = 0; }
-    </script>
-    <script src="./index.js"></script>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Security Engineer · CCSP · Azure native, AWS curious</p>
+        <h1>Secure by default, from the bucket policy to the CORS header.</h1>
+        <p class="lede">I'm Jonathan. This is my AWS Cloud Resume Challenge: a static site on S3 and CloudFront, two Lambdas, DynamoDB, Terraform and GitHub Actions, built the way I would build it at work. It also serves Star Wars facts, because I work for the Empire.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#architecture">See how it's built</a>
+          <a class="btn" href="#intel">Get a fact</a>
+          <a class="btn btn-quiet" href="https://github.com/MrGuato/AWS-Cloud-Challenge" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+        <p class="proof"><span>S3</span><span>CloudFront</span><span>ACM</span><span>Route 53</span><span>Lambda</span><span>API Gateway</span><span>DynamoDB</span><span>Terraform</span><span>GitHub Actions</span></p>
+      </div>
+
+      <aside class="live card" aria-label="Live status">
+        <div class="live-h"><span class="dot" id="statusDot"></span><span id="statusText" class="dim">Connecting</span></div>
+        <dl class="live-rows">
+          <div><dt>Views</dt><dd id="hViews">-</dd></div>
+          <div><dt>Intel API</dt><dd id="hApi">-</dd></div>
+          <div><dt>Site deploy</dt><dd id="hSite">-</dd></div>
+          <div><dt>API deploy</dt><dd id="hApiDeploy">-</dd></div>
+          <div><dt>Uptime</dt><dd><a class="ok" href="https://stats.uptimerobot.com/tybY8h8NyK" target="_blank" rel="noopener">Monitored</a></dd></div>
+        </dl>
+        <div class="live-f">checked <span id="checked">-</span> · live from Lambda, API Gateway and GitHub</div>
+      </aside>
+    </section>
+
+    <section class="block" id="project">
+      <p class="sec-eyebrow">01 · The project</p>
+      <h2>A resume site, built like production.</h2>
+      <p class="intro">The Cloud Resume Challenge asks for a static page with a visitor counter. I treated it as a small production system instead: private origins, least privilege, pinned dependencies, tested deploys, external monitoring, and a second API because one Lambda is never enough.</p>
+      <div class="cols3">
+        <div class="feature"><small>Front line</small><h3>Static, private, cached</h3><p>Plain HTML, CSS and JavaScript in a private S3 bucket. CloudFront is the only reader, through origin access control, and serves it over TLS from ACM on a Route 53 domain.</p></div>
+        <div class="feature"><small>Back end</small><h3>Two tiny Lambdas</h3><p>A Python function behind a Lambda URL increments the visitor count in DynamoDB. A Node 22 function on arm64 behind API Gateway serves cyber × Star Wars facts with strict CORS and hardened headers.</p></div>
+        <div class="feature"><small>Delivery</small><h3>Pipelines that heal</h3><p>GitHub Actions runs unit tests, repairs a stuck CloudFormation stack, deploys with the Serverless Framework and smoke-tests the live endpoint. The site syncs to S3 and purges the CDN.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="architecture">
+      <p class="sec-eyebrow">02 · Architecture</p>
+      <h2>One push, two paths.</h2>
+      <p class="intro">A merge to <code>main</code> fans out into a site deploy and an API deploy. Visitors never touch a server: the browser reads from the CDN and calls two serverless endpoints.</p>
+
+      <div class="diagram card">
+        <svg viewBox="0 0 1000 350" role="img" aria-labelledby="dg-title dg-desc">
+          <title id="dg-title">Architecture diagram</title>
+          <desc id="dg-desc">GitHub pushes trigger GitHub Actions, which syncs the site to S3 and deploys the Star Wars API Lambda. CloudFront serves S3 to the visitor over HTTPS. The visitor calls API Gateway, which invokes the Star Wars Lambda, and calls a Lambda URL that updates the visitor count in DynamoDB. Terraform provisions the counter Lambda and the table.</desc>
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker>
+            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah2"/></marker>
+          </defs>
+          <g class="edges">
+            <path class="e" d="M180 44H225"/><text class="el" x="202" y="36" text-anchor="middle">push</text>
+            <path class="e" d="M385 44H430"/><text class="el" x="407" y="36" text-anchor="middle">sync</text>
+            <path class="e" d="M590 44H635"/><text class="el" x="612" y="36" text-anchor="middle">OAC</text>
+            <path class="e" d="M795 44H910V150"/><text class="el" x="922" y="110">HTTPS</text>
+            <path class="e" d="M305 68V110H510V150"/><text class="el" x="408" y="102" text-anchor="middle">serverless deploy</text>
+            <path class="e r" d="M830 174H795"/><text class="el" x="812" y="166" text-anchor="middle">GET</text>
+            <path class="e r" d="M635 174H590"/><text class="el" x="612" y="166" text-anchor="middle">invoke</text>
+            <path class="e r" d="M910 198V304H795"/><text class="el" x="922" y="256">GET views</text>
+            <path class="e r" d="M635 304H590"/><text class="el" x="612" y="296" text-anchor="middle">UpdateItem</text>
+            <path class="e d" d="M180 304H430"/><text class="el" x="305" y="296" text-anchor="middle">terraform apply</text>
+          </g>
+          <g class="nodes">
+            <g transform="translate(20 20)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">GitHub</text><text x="80" y="37" text-anchor="middle" class="ns">push to main</text></g>
+            <g transform="translate(225 20)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">GitHub Actions</text><text x="80" y="37" text-anchor="middle" class="ns">tests · sync · deploy</text></g>
+            <g transform="translate(430 20)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">Amazon S3</text><text x="80" y="37" text-anchor="middle" class="ns">private origin</text></g>
+            <g transform="translate(635 20)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">CloudFront + ACM</text><text x="80" y="37" text-anchor="middle" class="ns">TLS edge</text></g>
+            <g class="hi" transform="translate(830 150)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">Visitor</text><text x="80" y="37" text-anchor="middle" class="ns">cloud.mrcyberleon.org</text></g>
+            <g transform="translate(635 150)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">API Gateway</text><text x="80" y="37" text-anchor="middle" class="ns">REST · strict CORS</text></g>
+            <g transform="translate(430 150)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">Lambda</text><text x="80" y="37" text-anchor="middle" class="ns">starwars-api · Node 22</text></g>
+            <g transform="translate(20 280)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">Terraform</text><text x="80" y="37" text-anchor="middle" class="ns">infrastructure as code</text></g>
+            <g transform="translate(430 280)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">DynamoDB</text><text x="80" y="37" text-anchor="middle" class="ns">views table</text></g>
+            <g transform="translate(635 280)"><rect width="160" height="48" rx="2"/><text x="80" y="21" text-anchor="middle" class="nn">Lambda URL</text><text x="80" y="37" text-anchor="middle" class="ns">visitor counter · Python</text></g>
+          </g>
+        </svg>
+      </div>
+
+      <ol class="timeline">
+        <li><small>01</small><div><b>Push to main</b><span>Pull request, review, merge. Nothing deploys from a laptop.</span></div></li>
+        <li><small>02</small><div><b>GitHub Actions</b><span>Site changes sync <code>assets/</code> to S3. API changes run tests, stack repair, deploy and a smoke test.</span></div></li>
+        <li><small>03</small><div><b>S3 and CloudFront</b><span>Private bucket, origin access control, TLS at the edge, cache purged on deploy.</span></div></li>
+        <li><small>04</small><div><b>Browser</b><span>Reads the page from the CDN, then calls the Lambda URL for the count and API Gateway for a fact.</span></div></li>
+        <li><small>05</small><div><b>Terraform</b><span>Defines the counter Lambda, its IAM role and the DynamoDB table so the infrastructure is reviewable in Git.</span></div></li>
+      </ol>
+    </section>
+
+    <section class="block" id="security">
+      <p class="sec-eyebrow">03 · Security</p>
+      <h2>Boring on purpose.</h2>
+      <p class="intro">Nothing here is clever. Each decision removes a way for this to go wrong.</p>
+      <div class="principles">
+        <div class="pr"><b>Private origin</b><p>The S3 bucket blocks public access. Only CloudFront can read it, through origin access control. No website endpoint, no public ACLs.</p></div>
+        <div class="pr"><b>TLS everywhere</b><p>ACM certificate on the distribution, HTTPS only, custom domain on Route 53. API Gateway and the Lambda URL are HTTPS by default.</p></div>
+        <div class="pr"><b>Strict CORS</b><p>The intel API echoes only allow-listed origins. Every response is JSON with <code>Cache-Control: no-store</code> and <code>X-Content-Type-Options: nosniff</code>. Query parameters are validated and rejected with a 400.</p></div>
+        <div class="pr"><b>Least privilege</b><p>The counter's role can touch one DynamoDB table. The intel Lambda needs no AWS permissions at all. Workflows run with a read-only token.</p></div>
+        <div class="pr"><b>Pinned supply chain</b><p>Third-party actions pinned by commit, lockfile installs with <code>npm ci</code>, Dependabot and Snyk on dependencies, CodeQL on every push. This page loads no external fonts or scripts.</p></div>
+        <div class="pr"><b>Deploys that fail safe</b><p>Unit tests gate the deploy, a repair step finishes a stuck CloudFormation rollback instead of piling a new update on top, and a smoke test proves the live endpoint before the job goes green. One deploy at a time.</p></div>
+        <div class="pr"><b>Watched from outside</b><p>UptimeRobot checks the site every few minutes and pages me by email, text and phone.</p></div>
+        <div class="pr"><b>Small blast radius</b><p>Two tiny functions, no servers, no database credentials, a few kilobytes of static files. There is very little here to compromise.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="intel">
+      <p class="sec-eyebrow">04 · Intel</p>
+      <h2>A fact from the Empire.</h2>
+      <p class="intro">Each request calls API Gateway, which invokes the Node Lambda and returns one cyber × Star Wars fact. Loot is rated by rarity, as it should be.</p>
+      <div class="quote card">
+        <p class="fact" id="fact" aria-live="polite">Press <b>New fact</b> to pull one from the API.</p>
+        <div class="quote-foot">
+          <div class="chips" id="factChips"></div>
+          <div class="quote-ctl">
+            <label class="sr-only" for="sector">Category</label>
+            <select id="sector" class="sel" hidden><option value="all">all categories</option></select>
+            <button type="button" class="btn btn-primary" id="factBtn">New fact</button>
+          </div>
+        </div>
+        <div class="live-f" id="factLive">GET /starwarsfact</div>
+      </div>
+    </section>
+
+    <section class="block" id="about">
+      <p class="sec-eyebrow">05 · About</p>
+      <h2>Jonathan DeLeon</h2>
+      <div class="about">
+        <img src="img/avatar-512.png" width="120" height="120" alt="Illustrated portrait of Jonathan DeLeon">
+        <div class="bio">
+          <p>Security engineer with a CCSP and a long Azure background. I spend my days on cloud defense, DevSecOps and detection engineering, writing KQL for Microsoft Defender and LEQL for Rapid7, and my evenings running a k3s homelab on Raspberry Pis and writing World of Warcraft addons.</p>
+          <p>This project exists because I had no AWS experience and wanted some. The challenge gave me a reason to touch S3, CloudFront, Lambda, API Gateway, DynamoDB and Terraform end to end, and to find out how the security habits I have in Azure translate.</p>
+          <dl class="facts">
+            <div><dt>Role</dt><dd>Security Engineer</dd></div>
+            <div><dt>Clearance</dt><dd>CCSP</dd></div>
+            <div><dt>Realms</dt><dd>Azure · AWS</dd></div>
+            <div><dt>Faction</dt><dd>Empire</dd></div>
+            <div><dt>Guild</dt><dd>&lt;Defenders of Companies&gt;</dd></div>
+            <div><dt>Weapons</dt><dd>KQL · LEQL · Terraform</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="links">
+      <p class="sec-eyebrow">06 · Elsewhere</p>
+      <h2>Find me.</h2>
+      <div class="links">
+        <a class="link" href="https://github.com/MrGuato" target="_blank" rel="noopener"><div><b>GitHub</b><span>MrGuato · code, homelab, addons</span></div><i>↗</i></a>
+        <a class="link" href="https://linkedin.com/in/jonathan-deleon-ccsp-81302a62" target="_blank" rel="noopener"><div><b>LinkedIn</b><span>work history and the professional version of me</span></div><i>↗</i></a>
+        <a class="link" href="https://www.credly.com/users/jonathan-deleon.bfdd720a" target="_blank" rel="noopener"><div><b>Credly</b><span>verified certifications</span></div><i>↗</i></a>
+        <a class="link" href="https://tryhackme.com/p/MrGuato" target="_blank" rel="noopener"><div><b>TryHackMe</b><span>MrGuato · rooms and badges</span></div><i>↗</i></a>
+        <a class="link" href="https://hashnode.com/@mrcyberleon" target="_blank" rel="noopener"><div><b>Hashnode</b><span>@mrcyberleon · writing</span></div><i>↗</i></a>
+        <a class="link" href="https://status.deleontech.net" target="_blank" rel="noopener"><div><b>pi-cluster status</b><span>live dashboard of the homelab</span></div><i>↗</i></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span>© <span id="year">2026</span> Jonathan DeLeon · <a href="https://github.com/MrGuato/AWS-Cloud-Challenge" target="_blank" rel="noopener">source</a></span>
+    <span class="motto">May the uptime be with you.</span>
+    <span id="version"></span>
+  </footer>
+</div>
+
+<script src="js/app.js" defer></script>
 </body>
 </html>

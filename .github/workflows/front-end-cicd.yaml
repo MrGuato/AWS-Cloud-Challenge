@@ -4,22 +4,44 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "assets/**"
+      - ".github/workflows/front-end-cicd.yaml"
+  workflow_dispatch:
 
 permissions:
-  contents: read  # Grants read-only access to repo contents
-  id-token: write  # Required for OpenID Connect (OIDC) authentication
+  contents: read # Grants read-only access to repo contents
+
+concurrency:
+  group: website-deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      # Optional: set this repository secret to the CloudFront distribution id that fronts the
+      # bucket and every deploy will purge the CDN cache, so changes show up right away.
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
     steps:
-      - uses: actions/checkout@v4  # Use a pinned version of checkout
-      - uses: jakejarvis/s3-sync-action@be0c4ab89158cac4278689ebedd8407dd5f35a83
+      - uses: actions/checkout@v4 # Use a pinned version of checkout
+
+      - name: Sync assets/ to the website bucket
+        uses: jakejarvis/s3-sync-action@be0c4ab89158cac4278689ebedd8407dd5f35a83
         with:
           args: --acl private --follow-symlinks --delete
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-1'
-          SOURCE_DIR: 'assets'
+          AWS_REGION: ${{ env.AWS_REGION }}
+          SOURCE_DIR: "assets"
+
+      - name: Invalidate the CloudFront cache
+        if: env.CLOUDFRONT_DISTRIBUTION_ID != ''
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ env.AWS_REGION }}
+        run: aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths "/*"

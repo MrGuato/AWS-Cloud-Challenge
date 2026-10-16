@@ -1,0 +1,18 @@
+# Dependencies and build output
+node_modules/
+.serverless/
+*.zip
+
+# Local environment files
+.env
+.env.*
+
+# Terraform state and providers
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/packedlambda.zip
+
+# OS noise
+.DS_Store
+Thumbs.db

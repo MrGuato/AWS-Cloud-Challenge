@@ -4,36 +4,103 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "backend/starwars-api/**"
+      - ".github/workflows/deploy.yml"
+  pull_request:
+    paths:
+      - "backend/starwars-api/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+    inputs:
+      recreate_stack:
+        description: "DANGER: delete the CloudFormation stack and build it again. The API Gateway URL changes, so assets/js/app.js must be updated afterwards."
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
+# Never run two deploys of the same stack at the same time. CloudFormation rejects the
+# second update, and a cancelled deploy can leave the stack half-updated.
+concurrency:
+  group: starwars-api-deploy
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: us-east-1
+  STAGE: dev
+  STACK_NAME: starwars-api-dev
+  NODE_VERSION: 22
+
+defaults:
+  run:
+    working-directory: backend/starwars-api
+
 jobs:
-  deploy:
+  test:
+    name: Unit tests
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '22.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: backend/starwars-api/package-lock.json
 
-    - name: Install Dependencies
-      run: npm install
-      working-directory: backend/starwars-api
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
 
-    - name: Install Serverless
-      run: npm install -g serverless
-      working-directory: backend/starwars-api
+      - name: Run tests
+        run: npm test
 
-    - name: Deploy with Serverless
-      working-directory: backend/starwars-api
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-      run: serverless deploy
+  deploy:
+    name: Deploy to AWS (dev)
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: backend/starwars-api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # A stack stuck in UPDATE_ROLLBACK_FAILED (or ROLLBACK_COMPLETE) can never be deployed
+      # over. This step finishes the rollback, skipping resources that cannot roll back, so
+      # the deploy below can proceed. See backend/starwars-api/scripts/repair-stack.sh.
+      - name: Repair the CloudFormation stack if it is stuck
+        env:
+          RECREATE_STACK: ${{ inputs.recreate_stack }}
+        run: bash scripts/repair-stack.sh
+
+      - name: Deploy with Serverless Framework
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+        run: npx serverless deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
+
+      - name: Smoke test the live endpoints
+        run: |
+          endpoint=$(aws cloudformation describe-stacks --stack-name "$STACK_NAME" \
+            --query "Stacks[0].Outputs[?OutputKey=='ServiceEndpoint'].OutputValue" --output text)
+          echo "Service endpoint: $endpoint"
+          if [ -z "$endpoint" ] || [ "$endpoint" = "None" ]; then
+            echo "::error::Could not read the ServiceEndpoint output from the stack"
+            exit 1
+          fi
+          curl -fsS --retry 3 --retry-delay 3 "$endpoint/health" | tee /dev/stderr | grep -q '"status":"ok"'
+          curl -fsS "$endpoint/starwarsfact" | tee /dev/stderr | grep -q '"fact"'
