@@ -1,20 +1,68 @@
+# Cyber x Star Wars intel API for https://cloud.mrcyberleon.org
+# Deployed by .github/workflows/deploy.yml on every push to main that touches this folder.
 service: starwars-api
 
-frameworkVersion: '4'
+frameworkVersion: "4"
 
 provider:
   name: aws
   runtime: nodejs22.x
-  region: us-east-1
+  architecture: arm64 # Graviton: cheaper and faster for a handler this small
+  region: ${opt:region, "us-east-1"}
+  stage: ${opt:stage, "dev"}
+  memorySize: 128
+  timeout: 5
+  logRetentionInDays: 14
+  versionFunctions: false # no need to keep every past Lambda version around
+  deploymentMethod: direct
 
-  deploymentBucket:
-    name: ${env:AWS_S3_BUCKET}
+  # IMPORTANT: there is deliberately no `deploymentBucket` here.
+  # The old config pointed it at the WEBSITE bucket (AWS_S3_BUCKET). The front-end workflow
+  # syncs that bucket with `--delete`, which wiped the Lambda deployment artifacts and left
+  # the CloudFormation stack in UPDATE_ROLLBACK_FAILED (it could not roll back to a zip that
+  # no longer existed). Serverless now manages its own, separate deployment bucket.
+
+  environment:
+    API_VERSION: ${file(./package.json):version}
+    # Comma-separated list of origins allowed to call the API from a browser.
+    # localhost is included so the site can be previewed locally; remove it if you prefer.
+    ALLOWED_ORIGINS: https://cloud.mrcyberleon.org,http://localhost:8080,http://127.0.0.1:8080
+
+  apiGateway:
+    minimumCompressionSize: 1024
+
+  tags: &tags
+    project: aws-cloud-challenge
+    component: starwars-api
+    managed-by: serverless
+  stackTags: *tags
+
+package:
+  # Ship only the handler. Before this, node_modules (including the Serverless CLI itself)
+  # was being zipped into the Lambda package.
+  patterns:
+    - "!**"
+    - "handler.js"
+    - "starwarsFacts.js"
 
 functions:
   starwarsfact:
     handler: handler.starwarsfact
+    description: Cyber x Star Wars intel - random fact, fact by id, full list and health check
     events:
       - http:
           path: starwarsfact
           method: get
-          cors: true
+          cors: &cors
+            origin: https://cloud.mrcyberleon.org
+            headers:
+              - Content-Type
+            allowCredentials: false
+      - http:
+          path: starwarsfacts
+          method: get
+          cors: *cors
+      - http:
+          path: health
+          method: get
+          cors: *cors

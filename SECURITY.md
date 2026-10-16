@@ -4,7 +4,7 @@ As a Security Engineer, I take security seriously. If you discover a security vu
 
 ## Scope
 
-This policy applies to any vulnerabilities you discover in [Your Project Name] on GitHub, including but not limited to code, dependencies, configurations, and related documentation.
+This policy applies to any vulnerabilities you discover in the AWS-Cloud-Challenge repository on GitHub, including but not limited to code, dependencies, configurations, and related documentation.
 
 ## Reporting Guidelines
 
