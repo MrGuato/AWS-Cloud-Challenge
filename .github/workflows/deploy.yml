@@ -42,9 +42,9 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
@@ -62,9 +62,9 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
@@ -74,7 +74,7 @@ jobs:
         run: npm ci
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v5
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -102,5 +102,18 @@ jobs:
             echo "::error::Could not read the ServiceEndpoint output from the stack"
             exit 1
           fi
-          curl -fsS --retry 3 --retry-delay 3 "$endpoint/health" | tee /dev/stderr | grep -q '"status":"ok"'
+          # A fresh API Gateway deployment can answer 403 for a few seconds while it propagates,
+          # and curl's --retry does not retry on 403, so poll until /health answers ok.
+          for attempt in $(seq 1 12); do
+            if body=$(curl -fsS "$endpoint/health" 2>/dev/null) && echo "$body" | grep -q '"status":"ok"'; then
+              echo "$body"
+              break
+            fi
+            if [ "$attempt" -eq 12 ]; then
+              echo "::error::/health did not answer ok after $attempt attempts"
+              exit 1
+            fi
+            echo "attempt $attempt: API not ready yet, retrying in 5s"
+            sleep 5
+          done
           curl -fsS "$endpoint/starwarsfact" | tee /dev/stderr | grep -q '"fact"'
